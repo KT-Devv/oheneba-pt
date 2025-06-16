@@ -16,35 +16,47 @@ import {
   Download,
   User,
   BookOpen,
-  Briefcase
+  Briefcase,
+  Smartphone,
+  Wifi,
+  Cpu
 } from 'lucide-react';
 
 function App() {
   const skills = [
-    { name: "Web Development", icon: <Globe className="w-6 h-6" />, level: 90 },
-    { name: "Programming", icon: <Code2 className="w-6 h-6" />, level: 85 },
-    { name: "Database Management", icon: <Database className="w-6 h-6" />, level: 80 },
-    { name: "Backend Development", icon: <Server className="w-6 h-6" />, level: 75 }
+    { name: "Full Stack Web Dev", icon: <Globe className="w-6 h-6" />, level: 90 },
+    { name: "Full Stack App Dev", icon: <Smartphone className="w-6 h-6" />, level: 85 },
+    { name: "Programming", icon: <Code2 className="w-6 h-6" />, level: 88 },
+    { name: "LEGO Robotics", icon: <Cpu className="w-6 h-6" />, level: 80 },
+    { name: "IoT", icon: <Wifi className="w-6 h-6" />, level: 75 },
+    { name: "Arduino", icon: <Server className="w-6 h-6" />, level: 82 },
+    { name: "Computer Networking", icon: <Database className="w-6 h-6" />, level: 78 }
   ];
 
   const projects = [
     {
       title: "Student Management System",
       description: "A comprehensive web application for managing student records, grades, and academic information with role-based access control.",
-      tech: ["React", "Node.js", "MongoDB", "Express"],
+      tech: ["React", "Node.js", "MySQL", "TypeScript"],
       image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173"
     },
     {
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard.",
-      tech: ["JavaScript", "PHP", "MySQL", "Bootstrap"],
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d"
+      title: "IoT Smart Home System",
+      description: "Arduino-based home automation system with sensor monitoring, remote control capabilities, and real-time data visualization.",
+      tech: ["Arduino", "C++", "Python", "React"],
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64"
     },
     {
-      title: "University Portal",
-      description: "Academic portal for students to access course materials, submit assignments, and track academic progress.",
-      tech: ["HTML", "CSS", "JavaScript", "PHP"],
-      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1"
+      title: "LEGO Mindstorms Robot",
+      description: "Autonomous robot built with LEGO Mindstorms for navigation, object detection, and task completion using advanced programming.",
+      tech: ["LEGO Mindstorms", "Scratch", "Java"],
+      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e"
+    },
+    {
+      title: "Network Monitoring Tool",
+      description: "Real-time network analysis and monitoring application for tracking network performance and security metrics.",
+      tech: ["Python", "JavaScript", "MySQL", "HTML"],
+      image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8"
     }
   ];
 
@@ -129,8 +141,9 @@ function App() {
           </p>
           
           <p className="text-lg text-gray-400 mb-12 max-w-4xl mx-auto leading-relaxed">
-            Passionate about software development, web technologies, and creating innovative solutions. 
-            Currently pursuing my BSc in Computer Science with a focus on full-stack development and modern programming practices.
+            Passionate about full-stack development, IoT systems, robotics, and network technologies. 
+            Currently pursuing my BSc in Computer Science with hands-on experience in web development, 
+            Arduino programming, LEGO robotics, and modern software engineering practices.
           </p>
 
           <div className="flex flex-wrap justify-center gap-6 mb-12">
@@ -200,7 +213,7 @@ function App() {
             Technical Skills
           </motion.h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
             {skills.map((skill, index) => (
               <motion.div
                 key={skill.name}
@@ -235,7 +248,7 @@ function App() {
           >
             <h3 className="text-2xl font-semibold mb-8">Technologies & Tools</h3>
             <div className="flex flex-wrap justify-center gap-4">
-              {['JavaScript', 'Python', 'Java', 'PHP', 'React', 'Node.js', 'MongoDB', 'MySQL', 'HTML', 'CSS', 'Git', 'Linux'].map((tech) => (
+              {['JavaScript', 'Python', 'Java', 'C++', 'HTML', 'CSS', 'MySQL', 'React', 'TypeScript', 'LEGO Mindstorms', 'Scratch', 'Git'].map((tech) => (
                 <span
                   key={tech}
                   className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 px-4 py-2 rounded-full text-sm"
@@ -260,7 +273,7 @@ function App() {
             Featured Projects
           </motion.h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <motion.div
                 key={project.title}
