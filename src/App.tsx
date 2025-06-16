@@ -24,7 +24,7 @@ import {
 
 function App() {
   const skills = [
-    { name: "Full Stack Web Dev", icon: <Globe className="w-6 h-6" />, level: 90 },
+    { name: "Full Stack Web Dev", icon: <Globe className="w-6 h-6" /> },
     { name: "Full Stack App Dev", icon: <Smartphone className="w-6 h-6" />, level: 85 },
     { name: "Programming", icon: <Code2 className="w-6 h-6" />, level: 88 },
     { name: "LEGO Robotics", icon: <Cpu className="w-6 h-6" />, level: 80 },
