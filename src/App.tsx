@@ -70,9 +70,9 @@ function App() {
   ];
 
   const contact = {
-    email: "yboabengwilson@gmail.com",
-    phone: "+233 XX XXX XXXX",
-    location: "Kumasi, Ghana",
+    email: "ohenebantim14@gmail.com",
+    phone: "+233 25 631 8601",
+    location: "Accra, Ghana",
     linkedin: "https://www.linkedin.com/in/oheneba-ntim-595700230"
   };
 
