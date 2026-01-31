@@ -187,7 +187,7 @@ function App() {
 
           <div className="flex justify-center gap-5">
             <motion.a
-              whileHover={{ scale: 1.1, color: '#00d4aa' }}
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               href={contact.linkedin}
               target="_blank"
@@ -197,7 +197,7 @@ function App() {
               <Linkedin className="w-6 h-6" />
             </motion.a>
             <motion.a
-              whileHover={{ scale: 1.1, color: '#00d4aa' }}
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               href="https://github.com/KT-Devv"
               target="_blank"
@@ -207,7 +207,7 @@ function App() {
               <Github className="w-6 h-6" />
             </motion.a>
             <motion.a
-              whileHover={{ scale: 1.1, color: '#00d4aa' }}
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               href={`mailto:${contact.email}`}
               className="text-gray-500 hover:text-accent transition-colors"
@@ -225,7 +225,7 @@ function App() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl font-bold mb-14 text-center section-title inline-block"
+            className="text-3xl font-bold mb-14 text-center section-title block"
           >
             Skill Set
           </motion.h2>
@@ -285,7 +285,7 @@ function App() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl font-bold mb-14 text-center section-title inline-block"
+            className="text-3xl font-bold mb-14 text-center section-title block"
           >
             Featured Projects
           </motion.h2>
@@ -338,7 +338,7 @@ function App() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl font-bold mb-14 text-center section-title inline-block"
+            className="text-3xl font-bold mb-14 text-center section-title block"
           >
             Education
           </motion.h2>
@@ -380,7 +380,7 @@ function App() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl font-bold mb-14 text-center section-title inline-block"
+            className="text-3xl font-bold mb-14 text-center section-title block"
           >
             Get In Touch
           </motion.h2>
@@ -408,13 +408,13 @@ function App() {
                     <MapPin className="w-4 h-4 text-accent shrink-0" />
                     <span className="text-sm font-mono">{contact.location}</span>
                   </div>
-                  <div className="flex items-center gap-3 text-gray-400 hover:text-accent transition-colors">
+                  <div className="flex items-center gap-3 text-gray-400 transition-colors">
                     <Linkedin className="w-4 h-4 text-accent shrink-0" />
                     <a 
                       href={contact.linkedin} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-sm font-mono"
+                      className="text-sm font-mono hover:text-accent transition-colors"
                     >
                       LinkedIn
                     </a>
@@ -428,7 +428,13 @@ function App() {
                 className="bg-surface/80 backdrop-blur-sm p-6 rounded-xl border border-border"
               >
                 <h3 className="text-base font-semibold font-mono text-gray-400 mb-4">Send a Message</h3>
-                <form className="space-y-3">
+                <form
+                  className="space-y-3"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    /* TODO: wire up form submission (e.g. email service or API) */
+                  }}
+                >
                   <input
                     type="text"
                     placeholder="Your Name"
