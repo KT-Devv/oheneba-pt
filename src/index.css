@@ -4,22 +4,51 @@
 
 @layer base {
   body {
-    @apply bg-black text-white;
+    @apply bg-void text-white font-sans antialiased;
   }
 }
 
+/* Subtle grid background */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Glow line accent */
+.glow-line {
+  box-shadow: 0 0 20px rgba(0, 212, 170, 0.15);
+}
+
+/* Section title underline */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin-top: 0.5rem;
+  background: linear-gradient(90deg, #00d4aa, transparent);
+  border-radius: 2px;
+}
+
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-black;
+  @apply bg-void;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-800 rounded-full;
+  @apply bg-border rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-700;
+  @apply bg-accent/30;
+}
+
+/* Selection */
+::selection {
+  @apply bg-accent/30 text-white;
 }
