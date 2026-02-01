@@ -20,6 +20,22 @@ import {
 
 function App() {
   const [profileImgError, setProfileImgError] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formStatus, setFormStatus] = useState<'idle' | 'opening'>('idle');
+
+  const handleContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(
+      formData.name ? `Message from ${formData.name} (${formData.email})` : `Message from portfolio (${formData.email || 'no email'})`
+    );
+    const body = encodeURIComponent(formData.message || '(No message provided)');
+    const mailto = `mailto:${contact.email}?subject=${subject}&body=${body}`;
+    setFormStatus('opening');
+    window.location.href = mailto;
+    setFormData({ name: '', email: '', message: '' });
+    setTimeout(() => setFormStatus('idle'), 1500);
+  };
+
   const skills = [
     { name: "Full Stack Web Dev", icon: <Globe className="w-6 h-6" />, level:90 },
     { name: "Full Stack App Dev", icon: <Smartphone className="w-6 h-6" />, level: 85 },
@@ -430,33 +446,37 @@ function App() {
                 <h3 className="text-base font-semibold font-mono text-gray-400 mb-4">Send a Message</h3>
                 <form
                   className="space-y-3"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    /* TODO: wire up form submission (e.g. email service or API) */
-                  }}
+                  onSubmit={handleContactSubmit}
                 >
                   <input
                     type="text"
                     placeholder="Your Name"
+                    value={formData.name}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
                     className="w-full bg-void border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-accent transition-colors placeholder:text-gray-600"
                   />
                   <input
                     type="email"
                     placeholder="Your Email"
+                    value={formData.email}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
                     className="w-full bg-void border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-accent transition-colors placeholder:text-gray-600"
                   />
                   <textarea
                     placeholder="Your Message"
                     rows={4}
+                    value={formData.message}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
                     className="w-full bg-void border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-accent transition-colors resize-none placeholder:text-gray-600"
                   />
                   <motion.button
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.99 }}
                     type="submit"
-                    className="w-full bg-accent hover:bg-accent/90 text-void font-semibold py-2.5 rounded-lg font-mono text-sm transition-colors shadow-glow-sm"
+                    disabled={formStatus === 'opening'}
+                    className="w-full bg-accent hover:bg-accent/90 disabled:opacity-70 disabled:cursor-not-allowed text-void font-semibold py-2.5 rounded-lg font-mono text-sm transition-colors shadow-glow-sm"
                   >
-                    Send Message
+                    {formStatus === 'opening' ? 'Opening email…' : 'Send Message'}
                   </motion.button>
                 </form>
               </motion.div>
