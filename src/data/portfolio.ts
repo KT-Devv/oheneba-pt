@@ -121,6 +121,7 @@ export const projects = [
 export const education = [
      {
     degree: 'High School Diploma',
+    course: 'General Science',
     institution: 'Our Lady of Grace Senior High School',
     year: '2019-2022',
     status: 'Graduated',

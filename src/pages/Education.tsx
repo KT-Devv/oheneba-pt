@@ -24,7 +24,7 @@ export const Education: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-surface/60 backdrop-blur-sm p-8 rounded-2xl border border-border hover:border-accent/40 transition-all duration-300"
+              className="bg-surface/60 backdrop-blur-sm p-8 rounded-2xl border border-border hover:border-accent/40 transition-all duration-300 mb-8"
             >
               <div className="flex items-start gap-6">
                 <div className="bg-accent/10 border border-accent/20 p-4 rounded-xl shrink-0">
@@ -32,6 +32,7 @@ export const Education: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2 text-white">{edu.degree}</h3>
+                  {edu.course && <p className="text-gray-400 font-mono text-sm mb-2">Course: {edu.course}</p>}
                   <p className="text-accent font-mono mb-2">{edu.institution}</p>
                   <div className="flex items-center gap-4 text-gray-500 text-sm">
                     <span className="font-mono">{edu.year}</span>
