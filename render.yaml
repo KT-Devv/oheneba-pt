@@ -1,0 +1,9 @@
+services:
+  - type: static
+    name: portfolio
+    buildCommand: npm run build
+    staticPublishPath: ./dist
+    routes:
+      - path: /*
+        policy: permanent-redirect
+        destination: /index.html
