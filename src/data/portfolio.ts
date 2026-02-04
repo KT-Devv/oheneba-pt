@@ -107,7 +107,7 @@ export const projects = [
     title: 'RiSE Robotics Competition 2021',
     description: '1st Place and trophy in the Robotics-inspired Science Education (RiSE) competition by Ghana Robotics Academy Foundation—National Robotics Competition 2021.',
     tech: ['Robotics', 'Competition', 'STEM'],
-    image: '/robot.jpg',
+    image: 'src/Images/Robot.jpg',
   },
   {
     title: 'Snake Game',
