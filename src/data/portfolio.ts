@@ -14,19 +14,20 @@ import {
 export const stats = [
   { value: '8+', label: 'Projects Completed' },
   { value: '1', label: 'National Robotics Win' },
-  { value: 'WRO', label: '2025 Singapore' },
+  { value: 'WRO', label: '2022 Germany, 2025 Singapore' },
   { value: 'RiSE', label: 'Competition 2021 · 1st' },
 ];
 
 export const skills = [
   { name: 'Full Stack Web Dev', icon: Globe, level: 90 },
   { name: 'Full Stack App Dev', icon: Smartphone, level: 85 },
-  { name: 'Programming', icon: Code2, level: 88 },
+  { name: 'Computer Programming', icon: Code2, level: 88 },
   { name: 'LEGO Robotics', icon: Cpu, level: 100 },
   { name: 'IoT', icon: Wifi, level: 90 },
+  { name: 'Database Management', icon: Database, level: 65 },
   { name: 'Arduino', icon: Server, level: 90 },
   { name: 'Computer Networking', icon: Database, level: 78 },
-  { name: 'System Design', icon: Layout, level: 60 },
+  { name: 'System Design', icon: Layout, level: 70 },
 ];
 
 export const otherInterests = [
@@ -35,6 +36,11 @@ export const otherInterests = [
   'Music',
   'Mentoring',
   'Gaming',
+  'Traveling',
+  'Formula 1',
+  'Photography',
+  'Driving',
+  'Technology Trends',
 ];
 
 export const services = [
@@ -113,7 +119,13 @@ export const projects = [
 ];
 
 export const education = [
-  {
+     {
+    degree: 'High School Diploma',
+    institution: 'Our Lady of Grace Senior High School',
+    year: '2019-2022',
+    status: 'Graduated',
+  },
+    {
     degree: 'BSc Computer Science',
     institution: 'Kwame Nkrumah University of Science and Technology',
     year: '2022 - 2026',

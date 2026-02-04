@@ -79,7 +79,7 @@ export const About: React.FC = () => {
             >
               I'm a final-year Computer Science student at Kwame Nkrumah University of Science and Technology (KNUST) 
               with a passion for building innovative solutions through technology. My journey spans full-stack web development, 
-              mobile app creation, robotics, and IoT systems.
+              mobile app creation, robotics, networking, and IoT systems.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 15 }}
@@ -88,7 +88,7 @@ export const About: React.FC = () => {
               viewport={{ once: true }}
             >
               Over the years, I've worked on diverse projects ranging from music discovery applications to educational robotics 
-              systems. I won 1st place in the RiSE Robotics Competition 2021 and have been selected to represent Ghana in the WRO 
+              systems. I won 1st place in the RiSE Robotics Competition 2021 and have been selected to represent Ghana in the Robofest Online competition in 2022, the World Robot Olympiad (WRO) 2022 competition in Germany, and the World Robot Olympiad (WRO) 
               2025 competition in Singapore.
             </motion.p>
             <motion.p
