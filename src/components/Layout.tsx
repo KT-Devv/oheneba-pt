@@ -36,7 +36,7 @@ export const Navigation: React.FC = () => {
           className="hidden md:flex items-center gap-2 font-mono text-sm text-accent hover:underline"
         >
           <Download className="w-4 h-4" />
-          Download CV
+          View Resume
         </a>
       </div>
     </nav>
