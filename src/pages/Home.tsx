@@ -46,13 +46,17 @@ export const Home: React.FC = () => {
             <div className="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full p-[3px] bg-gradient-to-br from-accent to-accent/40 shadow-glow ring-2 ring-accent/20">
               <div className="w-full h-full rounded-full bg-surface overflow-hidden flex items-center justify-center border-2 border-void">
                 {!profileImgError ? (
-                  <img
-                    src="/profile.JPG"
-                    alt="Oheneba Ntim"
-                    className="w-full h-full object-cover object-[42%_35%]"
-                    onError={() => setProfileImgError(true)}
-                    fetchPriority="high"
-                  />
+                  <picture>
+                    <source srcSet="/images/profile.avif" type="image/avif" />
+                    <source srcSet="/images/profile-800.webp" type="image/webp" />
+                    <img
+                      src="/profile.JPG"
+                      alt="Oheneba Ntim"
+                      className="w-full h-full object-cover object-[42%_35%]"
+                      onError={() => setProfileImgError(true)}
+                      fetchPriority="high"
+                    />
+                  </picture>
                 ) : (
                   <User className="w-16 h-16 text-accent" />
                 )}

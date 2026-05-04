@@ -21,12 +21,25 @@ export const Projects: React.FC = () => {
               const card = (
                 <>
                   <div className="relative h-52 overflow-hidden rounded-t-2xl">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
+                    {project.image && project.image.startsWith('/images/') ? (
+                      <picture>
+                        <source srcSet={project.image.replace('.jpg', '.avif')} type="image/avif" />
+                        <source srcSet={project.image.replace('.jpg', '-800.webp')} type="image/webp" />
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                      </picture>
+                    ) : (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-void via-void/20 to-transparent" />
                   </div>
                   <div className="p-6">
