@@ -42,6 +42,7 @@ export const Navigation: React.FC = () => {
         </a>
       </div>
     </nav>
+    </>
   );
 };
 
