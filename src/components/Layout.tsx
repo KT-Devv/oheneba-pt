@@ -50,7 +50,7 @@ export const Footer: React.FC = () => {
   return (
     <footer className="py-10 px-6 border-t border-border">
       <div className="max-w-6xl mx-auto text-center">
-        <p className="text-gray-500 font-mono text-sm">
+        <p className="text-gray-300 font-mono text-sm">
           © {new Date().getFullYear()} Oheneba Kwaku Tawiah Ntim
         </p>
       </div>
