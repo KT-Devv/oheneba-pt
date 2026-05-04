@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from '../lib/motion-proxy';
 import { services, skills, technologies } from '../data/portfolio';
 
 export const Services: React.FC = () => {

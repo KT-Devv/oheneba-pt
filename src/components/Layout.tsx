@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Download } from 'lucide-react';
+import Download from 'lucide-react/dist/esm/icons/download.js';
 
 export const Navigation: React.FC = () => {
   const navItems = [

@@ -9,6 +9,8 @@
     "build": "vite build",
     "critical": "critical dist/index.html --base=dist --inline --minify --extract --width=1300 --height=900",
     "audit:accessibility": "pa11y http://localhost:4173",
+    "analyze": "vite build --sourcemap && npx source-map-explorer 'dist/assets/*.js'",
+    "analyze:visual": "vite build --sourcemap --mode production && node scripts/generate-visualizer.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -26,6 +28,8 @@
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.18",
     "critical": "^7.2.1",
+    "source-map-explorer": "^2.5.2",
+    "rollup-plugin-visualizer": "^5.12.0",
     "eslint": "^9.9.1",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.11",

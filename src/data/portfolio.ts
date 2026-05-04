@@ -1,15 +1,13 @@
-import {
-  Code2,
-  Smartphone,
-  Globe,
-  Cpu,
-  Wifi,
-  Server,
-  Database,
-  Layout,
-  BookOpen,
-  Lightbulb,
-} from 'lucide-react';
+import Code2 from 'lucide-react/dist/esm/icons/code-2.js';
+import Smartphone from 'lucide-react/dist/esm/icons/smartphone.js';
+import Globe from 'lucide-react/dist/esm/icons/globe.js';
+import Cpu from 'lucide-react/dist/esm/icons/cpu.js';
+import Wifi from 'lucide-react/dist/esm/icons/wifi.js';
+import Server from 'lucide-react/dist/esm/icons/server.js';
+import Database from 'lucide-react/dist/esm/icons/database.js';
+import Layout from 'lucide-react/dist/esm/icons/panels-top-left.js';
+import BookOpen from 'lucide-react/dist/esm/icons/book-open.js';
+import Lightbulb from 'lucide-react/dist/esm/icons/lightbulb.js';
 
 export const stats = [
   { value: '8+', label: 'Projects Completed' },
@@ -71,37 +69,37 @@ export const projects = [
     title: 'Melora',
     description: 'Mobile app group project (2022)—a Shazam-like experience that lets users discover music by listening and download it directly to their devices.',
     tech: ['Mobile', 'Java', 'Android'],
-    image: 'https://images.unsplash.com/photo-1611339555312-e607c8352fd7',
+    image: 'https://images.unsplash.com/photo-1611339555312-e607c8352fd7?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'Career Atlas',
     description: 'Web project for job seekers and employers. Helps job seekers find opportunities and employers find talent.',
     tech: ['CSS', 'HTML', 'TypeScript', 'Java'],
-    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8',
+    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'Echo Bank AI',
     description: 'AI-powered website for the finance sector, built as part of studies to improve banking experience and reduce faulty transactions.',
     tech: ['AI', 'Web', 'HTML', 'CSS', 'TypeScript', 'Java'],
-    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f',
+    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'SiteTrack',
     description: 'Construction company management system for tracking projects, resources, and operations.',
     tech: ['Web', 'Database', 'Management System'],
-    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd',
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'LEGO Mindstorms EV3 — WRO 2025',
     description: 'Programmed LEGO Mindstorms EV3 robot for WRO 2025 RoboMission Junior at CSIR: sensor integration, pathfinding algorithms, and geometry-based navigation. Delivered competition-ready robot with 95% task success rate.',
     tech: ['LEGO Mindstorms', 'EV3', 'Robotics', 'Sensors', 'Algorithms'],
-    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e',
+    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'Interactive Website (CSIR)',
     description: 'Developed an interactive website during the CSIR internship, built with HTML, CSS, and JavaScript.',
     tech: ['HTML', 'CSS', 'JavaScript'],
-    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d',
+    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'RiSE Robotics Competition 2021',
@@ -114,7 +112,7 @@ export const projects = [
     title: 'Snake Game',
     description: 'Classic Snake game built with Python and Pygame. Features customizable background, Easy/Medium/Hard difficulty levels, special food items, sound effects, and high score tracking.',
     tech: ['Python', 'Pygame'],
-    image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e',
+    image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80',
     url: 'https://github.com/KT-Devv/Snake_game',
   },
 ];

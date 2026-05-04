@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from '../lib/motion-proxy';
 import { Mail, MapPin, Linkedin } from 'lucide-react';
 import { contact } from '../data/portfolio';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from '../lib/motion-proxy';
 import { stats } from '../data/portfolio';
 
 export const About: React.FC = () => {

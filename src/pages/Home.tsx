@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion } from '../lib/motion-proxy';
 import { Github, Linkedin, Mail, ChevronDown, User } from 'lucide-react';
 import { stats, contact } from '../data/portfolio';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from '../lib/motion-proxy';
 import { GraduationCap } from 'lucide-react';
 import { education, otherInterests } from '../data/portfolio';
 
