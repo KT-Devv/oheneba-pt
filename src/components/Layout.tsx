@@ -13,8 +13,10 @@ export const Navigation: React.FC = () => {
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-void/70 backdrop-blur-xl border-b border-border/50">
-      <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <>
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-accent text-void px-3 py-2 rounded-md z-50">Skip to content</a>
+      <nav className="fixed top-0 w-full z-50 bg-void/70 backdrop-blur-xl border-b border-border/50">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         <Link to="/" className="text-xl font-semibold font-mono text-accent tracking-tight hover:text-accent/80 transition-colors">
           K.T Devv
         </Link>
@@ -30,7 +32,7 @@ export const Navigation: React.FC = () => {
           ))}
         </div>
         <a
-          href="/public/resume.pdf"
+          href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="hidden md:flex items-center gap-2 font-mono text-sm text-accent hover:underline"
