@@ -51,6 +51,7 @@ export const Home: React.FC = () => {
                     alt="Oheneba Ntim"
                     className="w-full h-full object-cover object-[42%_35%]"
                     onError={() => setProfileImgError(true)}
+                    fetchPriority="high"
                   />
                 ) : (
                   <User className="w-16 h-16 text-accent" />
