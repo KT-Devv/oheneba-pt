@@ -30,7 +30,7 @@ export const Navigation: React.FC = () => {
           ))}
         </div>
         <a
-          href="/My CV.pdf"
+          href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="hidden md:flex items-center gap-2 font-mono text-sm text-accent hover:underline"
