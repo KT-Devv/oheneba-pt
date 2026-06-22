@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from '../lib/motion-proxy';
-import { Github, Linkedin, Mail, ChevronDown, User } from 'lucide-react';
+import Github from 'lucide-react/dist/esm/icons/github.js';
+import Linkedin from 'lucide-react/dist/esm/icons/linkedin.js';
+import Mail from 'lucide-react/dist/esm/icons/mail.js';
+import ChevronDown from 'lucide-react/dist/esm/icons/chevron-down.js';
+import User from 'lucide-react/dist/esm/icons/user.js';
 import { stats, contact } from '../data/portfolio';
 
 export const Home: React.FC = () => {

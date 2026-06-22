@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from '../lib/motion-proxy';
-import { GraduationCap } from 'lucide-react';
+import GraduationCap from 'lucide-react/dist/esm/icons/graduation-cap.js';
 import { education, otherInterests } from '../data/portfolio';
 
 export const Education: React.FC = () => {

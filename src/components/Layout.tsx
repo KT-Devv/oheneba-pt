@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Download, Menu, X } from 'lucide-react';
+import Download from 'lucide-react/dist/esm/icons/download.js';
+import Menu from 'lucide-react/dist/esm/icons/menu.js';
+import X from 'lucide-react/dist/esm/icons/x.js';
 import { motion } from '../lib/motion-proxy';
 
 export const Navigation: React.FC = () => {

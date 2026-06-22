@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from '../lib/motion-proxy';
-import { Mail, MapPin, Linkedin } from 'lucide-react';
+import Mail from 'lucide-react/dist/esm/icons/mail.js';
+import MapPin from 'lucide-react/dist/esm/icons/map-pin.js';
+import Linkedin from 'lucide-react/dist/esm/icons/linkedin.js';
 import { contact } from '../data/portfolio';
 
 export const Contact: React.FC = () => {
