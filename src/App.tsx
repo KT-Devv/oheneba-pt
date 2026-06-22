@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
-import { Navigation, Footer } from './components/Layout';
+
+const Navigation = lazy(() => import('./components/Layout').then(m => ({ default: m.Navigation })));
+const Footer = lazy(() => import('./components/Layout').then(m => ({ default: m.Footer })));
 
 const Home = lazy(() => import('./pages/Home').then(m => ({ default: m.Home })));
 const About = lazy(() => import('./pages/About').then(m => ({ default: m.About })));

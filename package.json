@@ -28,18 +28,18 @@
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.18",
     "critical": "^7.2.1",
-    "source-map-explorer": "^2.5.2",
-    "rollup-plugin-visualizer": "^5.12.0",
     "eslint": "^9.9.1",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.11",
     "globals": "^15.9.0",
     "pa11y": "^9.1.1",
     "postcss": "^8.4.35",
+    "rollup-plugin-visualizer": "^5.12.0",
     "sharp": "^0.34.5",
+    "source-map-explorer": "^2.5.2",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.5.3",
-    "typescript-eslint": "^8.3.0",
+    "typescript-eslint": "^8.61.1",
     "vite": "^7.3.1"
   }
 }

@@ -4,6 +4,6 @@ services:
     buildCommand: npm run build
     staticPublishPath: ./dist
     routes:
-      - path: /*
-        policy: permanent-redirect
+      - type: rewrite
+        source: /*
         destination: /index.html
