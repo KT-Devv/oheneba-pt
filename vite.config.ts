@@ -5,6 +5,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   plugins: [react()],
+  appType: 'spa',
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
@@ -12,5 +13,8 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       plugins: mode === 'analysis' ? [visualizer({ filename: 'dist/bundle-analysis.html', open: false })] : [],
     },
+  },
+  preview: {
+    port: 4173,
   },
 }));
