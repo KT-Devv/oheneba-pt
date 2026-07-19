@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Download from 'lucide-react/dist/esm/icons/download.js';
 import Menu from 'lucide-react/dist/esm/icons/menu.js';
 import X from 'lucide-react/dist/esm/icons/x.js';
-import { motion, AnimatePresence } from '../lib/motion-proxy';
 
 export const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,15 +64,9 @@ export const Navigation: React.FC = () => {
           </button>
         </div>
       </nav>
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.2 }}
-          className="md:hidden fixed top-[61px] left-0 w-full bg-void/95 border-b border-border/80 backdrop-blur-xl z-40 overflow-hidden"
+      {isOpen && (
+        <div
+          className="md:hidden fixed top-[61px] left-0 w-full bg-void/95 border-b border-border/80 backdrop-blur-xl z-40"
         >
           <div className="flex flex-col px-6 py-6 gap-5 font-mono text-sm">
             {navItems.map((item) => (
@@ -97,9 +90,8 @@ export const Navigation: React.FC = () => {
               View Resume
             </a>
           </div>
-        </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </>
   );
 };
