@@ -40,7 +40,7 @@ function createTag(tag: string) {
 }
 
 const tags = [
-  'div', 'p', 'h1', 'h2', 'h3', 'section', 'span', 'img', 'header', 'footer', 'li', 'ul', 'a', 'main'
+  'div', 'p', 'h1', 'h2', 'h3', 'section', 'span', 'img', 'header', 'footer', 'li', 'ul', 'a', 'main', 'blockquote'
 ];
 
 export const motion: Record<string, any> = {};
