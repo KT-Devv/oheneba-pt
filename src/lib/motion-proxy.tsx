@@ -46,4 +46,16 @@ const tags = [
 export const motion: Record<string, any> = {};
 for (const t of tags) motion[t] = createTag(t);
 
+const AnimatePresenceFallback: React.FC<{ children: React.ReactNode }> = ({ children }) => <>{children}</>;
+
+let _AnimatePresence: React.FC<{ children: React.ReactNode }> = AnimatePresenceFallback;
+
+export { _AnimatePresence as AnimatePresence };
+
+ensureLoaded().then((mod) => {
+  if (mod?.AnimatePresence) {
+    _AnimatePresence = mod.AnimatePresence;
+  }
+}).catch(() => {});
+
 export default motion;

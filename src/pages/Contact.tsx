@@ -17,7 +17,7 @@ export const Contact: React.FC = () => {
     const body = encodeURIComponent(formData.message || '(No message provided)');
     const mailto = `mailto:${contact.email}?subject=${subject}&body=${body}`;
     setFormStatus('opening');
-    window.open(mailto);
+    window.location.href = mailto;
     setFormData({ name: '', email: '', message: '' });
     setTimeout(() => setFormStatus('idle'), 1500);
   };

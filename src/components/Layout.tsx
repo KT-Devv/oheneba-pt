@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import Download from 'lucide-react/dist/esm/icons/download.js';
 import Menu from 'lucide-react/dist/esm/icons/menu.js';
 import X from 'lucide-react/dist/esm/icons/x.js';
-import { motion } from '../lib/motion-proxy';
+import { motion, AnimatePresence } from '../lib/motion-proxy';
 
 export const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +15,17 @@ export const Navigation: React.FC = () => {
     { label: 'Education', path: '/education' },
     { label: 'Contact', path: '/contact' },
   ];
+
+  const handleEscape = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape') setIsOpen(false);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [isOpen, handleEscape]);
 
   return (
     <>
@@ -55,7 +66,8 @@ export const Navigation: React.FC = () => {
         </div>
       </nav>
       {/* Mobile Menu */}
-      {isOpen && (
+      <AnimatePresence>
+        {isOpen && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
@@ -86,7 +98,8 @@ export const Navigation: React.FC = () => {
             </a>
           </div>
         </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </>
   );
 };

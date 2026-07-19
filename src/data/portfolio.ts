@@ -127,6 +127,7 @@ export const education = [
   },
     {
     degree: 'BSc Computer Science',
+    course: 'Computer Science',
     institution: 'Kwame Nkrumah University of Science and Technology',
     year: '2022 - 2026',
     status: 'Final Year Student',
@@ -164,18 +165,15 @@ export const technologies = [
   'GitHub',
   'VS Code',
   'Render',
-  'Mongodb',
+  'MongoDB',
   'PostgreSQL',
   'Next.js',
   'Cisco Packet Tracer',
   'Node.js',
   'Express.js',
   'Supabase',
-  'MongoDB',
   'Tinkercad',
   'Raspberry Pi',
   'Pybricks',
-  'Packet Tracer',
   'Arduino',
-  
 ];

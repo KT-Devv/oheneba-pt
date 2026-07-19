@@ -120,6 +120,9 @@ export const Home: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
             onClick={handleSmoothScroll}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleSmoothScroll(); } }}
+            role="button"
+            tabIndex={0}
             className="inline-flex flex-col items-center gap-1 mt-20 text-gray-500 hover:text-accent transition-colors font-mono text-sm cursor-pointer"
           >
             <span>Explore more</span>
@@ -160,11 +163,12 @@ export const Home: React.FC = () => {
           >
             Explore My Work
           </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               { title: 'About Me', description: 'Learn my story and passion', path: '/about', number: '01' },
               { title: 'Services', description: 'What I can offer you', path: '/services', number: '02' },
-              { title: 'Projects', description: 'Featured work & portfolio', path: '/projects', number: '04' },
+              { title: 'Projects', description: 'Featured work & portfolio', path: '/projects', number: '03' },
+              { title: 'Education', description: 'Academic background & interests', path: '/education', number: '04' },
             ].map((item) => (
               <Link
                 key={item.path}
