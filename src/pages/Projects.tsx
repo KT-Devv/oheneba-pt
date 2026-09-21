@@ -1,26 +1,21 @@
 import React from 'react';
-import { motion } from '../lib/motion-proxy';
 import { projects } from '../data/portfolio';
+import { BlurFade } from '@/components/ui/blur-fade';
+import { MagicCard } from '@/components/ui/magic-card';
+import { SectionHeading } from '@/components/ui/section-heading';
+import { TiltCard } from '@/components/ui/tilt-card';
 
 export const Projects: React.FC = () => {
   return (
     <div className="min-h-screen bg-void bg-grid text-white pt-24">
       <section className="py-24 md:py-32 px-6 border-t border-border bg-surface/20">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-4 mb-20"
-          >
-            <h1 className="text-6xl md:text-7xl font-bold text-accent/20">04</h1>
-            <h1 className="text-2xl md:text-3xl font-bold section-title">Featured Projects</h1>
-          </motion.div>
+          <SectionHeading number="04" title="Featured Projects" as="h1" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {projects.map((project, index) => {
               const card = (
                 <>
-                  <div className="relative h-52 overflow-hidden rounded-t-2xl">
+                  <div className="relative h-52 overflow-hidden">
                     {project.image && project.image.startsWith('/images/') ? (
                       <picture>
                         <source srcSet={project.image.replace('.jpg', '.avif')} type="image/avif" />
@@ -40,10 +35,10 @@ export const Projects: React.FC = () => {
                         loading="lazy"
                       />
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-void via-void/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-surface via-void/20 to-transparent" />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-3 text-white">{project.title}</h3>
+                    <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-accent transition-colors">{project.title}</h3>
                     <p className="text-gray-500 mb-5 text-base leading-relaxed">{project.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {project.tech.map((tech) => (
@@ -59,22 +54,19 @@ export const Projects: React.FC = () => {
                 </>
               );
               return (
-                <motion.div
-                  key={project.title}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  viewport={{ once: true }}
-                  className="bg-surface/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-border hover:border-accent/40 transition-all duration-300 group"
-                >
-                  {'url' in project && project.url ? (
-                    <a href={project.url} target="_blank" rel="noopener noreferrer" className="block">
-                      {card}
-                    </a>
-                  ) : (
-                    card
-                  )}
-                </motion.div>
+                <BlurFade key={project.title} delay={(index % 2) * 0.08} className="h-full">
+                  <TiltCard className="h-full">
+                    <MagicCard className="h-full" gradientSize={320}>
+                      {'url' in project && project.url ? (
+                        <a href={project.url} target="_blank" rel="noopener noreferrer" className="block h-full">
+                          {card}
+                        </a>
+                      ) : (
+                        card
+                      )}
+                    </MagicCard>
+                  </TiltCard>
+                </BlurFade>
               );
             })}
           </div>

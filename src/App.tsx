@@ -1,8 +1,22 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 
-const Navigation = lazy(() => import('./components/Layout').then(m => ({ default: m.Navigation })));
-const Footer = lazy(() => import('./components/Layout').then(m => ({ default: m.Footer })));
+const pageLoaders: Record<string, () => Promise<unknown>> = {
+  '/': () => import('./pages/Home'),
+  '/about': () => import('./pages/About'),
+  '/services': () => import('./pages/Services'),
+  '/projects': () => import('./pages/Projects'),
+  '/education': () => import('./pages/Education'),
+  '/contact': () => import('./pages/Contact'),
+};
+
+// Start fetching the shell and the current route's page in parallel instead of
+// waiting for the shell to render before discovering which page it needs.
+const loadShell = () => import('./components/Shell');
+void loadShell();
+void pageLoaders[window.location.pathname.replace(/\/+$/, '') || '/']?.();
+
+const Shell = lazy(loadShell);
 
 const Home = lazy(() => import('./pages/Home').then(m => ({ default: m.Home })));
 const About = lazy(() => import('./pages/About').then(m => ({ default: m.About })));
@@ -14,9 +28,8 @@ const Contact = lazy(() => import('./pages/Contact').then(m => ({ default: m.Con
 function App() {
   return (
     <Router>
-      <Navigation />
       <Suspense fallback={<div aria-busy="true" className="min-h-screen flex items-center justify-center">Loading...</div>}>
-        <main id="main-content" role="main">
+        <Shell>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -25,9 +38,8 @@ function App() {
             <Route path="/education" element={<Education />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
-        </main>
+        </Shell>
       </Suspense>
-      <Footer />
     </Router>
   );
 }
