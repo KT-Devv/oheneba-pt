@@ -8,6 +8,7 @@ import Database from 'lucide-react/dist/esm/icons/database.js';
 import Layout from 'lucide-react/dist/esm/icons/panels-top-left.js';
 import BookOpen from 'lucide-react/dist/esm/icons/book-open.js';
 import Lightbulb from 'lucide-react/dist/esm/icons/lightbulb.js';
+import Network from 'lucide-react/dist/esm/icons/network.js';
 
 export const stats = [
   { value: '8+', label: 'Projects Completed' },
@@ -24,7 +25,7 @@ export const skills = [
   { name: 'IoT', icon: Wifi, level: 90 },
   { name: 'Database Management', icon: Database, level: 65 },
   { name: 'Arduino', icon: Server, level: 90 },
-  { name: 'Computer Networking', icon: Database, level: 78 },
+  { name: 'Computer Networking', icon: Network, level: 78 },
   { name: 'System Design', icon: Layout, level: 70 },
 ];
 
