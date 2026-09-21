@@ -11,22 +11,26 @@ interface BlurFadeProps {
   delay?: number;
   offset?: number;
   direction?: 'up' | 'down' | 'left' | 'right';
+  /**
+   * Optional blur-in radius, e.g. "6px". Off by default — reserve it for small
+   * text, since blur is expensive to paint on large blocks.
+   */
   blur?: string;
   /** Animate when scrolled into view (default) instead of on mount. */
   inView?: boolean;
   inViewMargin?: string;
 }
 
-/** Magic UI BlurFade — fades an element in from a blur while it drifts into place. */
+/** Magic UI BlurFade — fades an element in while it drifts into place (optionally from a blur). */
 export function BlurFade({
   children,
   className,
   as = 'div',
-  duration = 0.5,
+  duration = 0.4,
   delay = 0,
-  offset = 12,
+  offset = 10,
   direction = 'down',
-  blur = '8px',
+  blur,
   inView = true,
   inViewMargin = '-40px',
 }: BlurFadeProps) {
@@ -35,8 +39,13 @@ export function BlurFade({
   const sign = direction === 'right' || direction === 'up' ? -1 : 1;
 
   const variants: Variants = {
-    hidden: { [axis]: sign * offset, opacity: 0, filter: `blur(${blur})` },
-    visible: { [axis]: 0, opacity: 1, filter: 'blur(0px)' },
+    hidden: { [axis]: sign * offset, opacity: 0, ...(blur ? { filter: `blur(${blur})` } : {}) },
+    visible: {
+      [axis]: 0,
+      opacity: 1,
+      // Drop the filter once settled so the element doesn't keep its own compositing layer.
+      ...(blur ? { filter: 'blur(0px)', transitionEnd: { filter: 'none' } } : {}),
+    },
   };
 
   return (

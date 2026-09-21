@@ -43,9 +43,9 @@ export default function Shell({ children }: { children: ReactNode }) {
       <main id="main-content" role="main">
         <motion.div
           key={pathname}
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
         >
           <Suspense fallback={pageFallback}>{children}</Suspense>
         </motion.div>

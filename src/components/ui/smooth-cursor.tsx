@@ -16,8 +16,12 @@ export interface SmoothCursorProps {
   };
 }
 
+// The arrow's tip sits at (25, ~5.5) in its 50x54 viewBox — used to pin the tip to the real pointer.
+const TIP_X = 0.5;
+const TIP_Y = 0.1;
+
 const DefaultCursorSVG: FC = () => (
-  <svg width="50" height="54" viewBox="0 0 50 54" fill="none" style={{ scale: 0.5 }} aria-hidden="true">
+  <svg width="20" height="22" viewBox="0 0 50 54" fill="none" aria-hidden="true" style={{ display: 'block' }}>
     <g filter="url(#smooth_cursor_shadow)">
       <path
         d="M42.6817 41.1495L27.5103 6.79925C26.7269 5.02557 24.2082 5.02558 23.3927 6.79925L7.59814 41.1495C6.75833 42.9759 8.52712 44.8902 10.4125 44.1954L24.3757 39.0496C24.8829 38.8627 25.4385 38.8627 25.9422 39.0496L39.8121 44.1954C41.6849 44.8902 43.4884 42.9759 42.6817 41.1495Z"
@@ -26,7 +30,7 @@ const DefaultCursorSVG: FC = () => (
       <path
         d="M43.7146 40.6933L28.5431 6.34306C27.3556 3.65428 23.5772 3.69516 22.3668 6.32755L6.57226 40.6778C5.3134 43.4156 7.97238 46.298 10.803 45.2549L24.7662 40.109C25.0221 40.0147 25.2999 40.0156 25.5494 40.1082L39.4193 45.254C42.2261 46.2953 44.9254 43.4347 43.7146 40.6933Z"
         stroke="#00d4aa"
-        strokeWidth="2.25825"
+        strokeWidth="3.5"
       />
     </g>
     <defs>
@@ -72,12 +76,12 @@ function useCursorEnabled() {
 
 export function SmoothCursor({
   cursor = <DefaultCursorSVG />,
-  springConfig = { damping: 45, stiffness: 400, mass: 1, restDelta: 0.001 },
+  // Stiff and close to critically damped: follows the pointer within a couple of frames, no overshoot.
+  springConfig = { damping: 40, stiffness: 1000, mass: 0.6, restDelta: 0.01 },
 }: SmoothCursorProps) {
   const enabled = useCursorEnabled();
   const [visible, setVisible] = useState(false);
   const lastMousePos = useRef<Position>({ x: 0, y: 0 });
-  const velocity = useRef<Position>({ x: 0, y: 0 });
   const lastUpdateTime = useRef(0);
   const previousAngle = useRef(0);
   const accumulatedRotation = useRef(0);
@@ -85,13 +89,12 @@ export function SmoothCursor({
 
   const cursorX = useSpring(0, springConfig);
   const cursorY = useSpring(0, springConfig);
-  const rotation = useSpring(0, { ...springConfig, damping: 60, stiffness: 300 });
-  const scale = useSpring(1, { ...springConfig, stiffness: 500, damping: 35 });
+  const rotation = useSpring(0, { damping: 35, stiffness: 450, mass: 0.6, restDelta: 0.01 });
+  const scale = useSpring(1, { damping: 30, stiffness: 700, mass: 0.5, restDelta: 0.001 });
 
   useEffect(() => {
     if (!enabled) return;
 
-    let rafId = 0;
     let settleTimeout: ReturnType<typeof setTimeout> | undefined;
 
     const handleMove = (e: MouseEvent) => {
@@ -109,41 +112,32 @@ export function SmoothCursor({
         return;
       }
 
-      const deltaTime = now - lastUpdateTime.current;
-      if (deltaTime > 0) {
-        velocity.current = {
-          x: (currentPos.x - lastMousePos.current.x) / deltaTime,
-          y: (currentPos.y - lastMousePos.current.y) / deltaTime,
-        };
-      }
-      lastUpdateTime.current = now;
-      lastMousePos.current = currentPos;
-
       cursorX.set(currentPos.x);
       cursorY.set(currentPos.y);
 
-      const speed = Math.hypot(velocity.current.x, velocity.current.y);
-      if (speed > 0.1) {
-        const currentAngle = Math.atan2(velocity.current.y, velocity.current.x) * (180 / Math.PI) + 90;
+      const dx = currentPos.x - lastMousePos.current.x;
+      const dy = currentPos.y - lastMousePos.current.y;
+      const dt = now - lastUpdateTime.current;
+
+      // Only steer the arrow on real movement so tiny jitters don't spin it.
+      if (dt > 0 && Math.hypot(dx, dy) >= 2) {
+        const speed = Math.hypot(dx, dy) / dt;
+        const currentAngle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
         let angleDiff = currentAngle - previousAngle.current;
         if (angleDiff > 180) angleDiff -= 360;
         if (angleDiff < -180) angleDiff += 360;
         accumulatedRotation.current += angleDiff;
         rotation.set(accumulatedRotation.current);
         previousAngle.current = currentAngle;
+        lastMousePos.current = currentPos;
+        lastUpdateTime.current = now;
 
-        scale.set(0.95);
-        clearTimeout(settleTimeout);
-        settleTimeout = setTimeout(() => scale.set(1), 150);
+        if (speed > 0.1) {
+          scale.set(0.92);
+          clearTimeout(settleTimeout);
+          settleTimeout = setTimeout(() => scale.set(1), 120);
+        }
       }
-    };
-
-    const throttledMove = (e: MouseEvent) => {
-      if (rafId) return;
-      rafId = requestAnimationFrame(() => {
-        handleMove(e);
-        rafId = 0;
-      });
     };
 
     const handleLeave = () => setVisible(false);
@@ -152,16 +146,15 @@ export function SmoothCursor({
     };
 
     document.documentElement.classList.add('smooth-cursor-active');
-    window.addEventListener('mousemove', throttledMove);
+    window.addEventListener('mousemove', handleMove, { passive: true });
     document.documentElement.addEventListener('mouseleave', handleLeave);
     document.documentElement.addEventListener('mouseenter', handleEnter);
 
     return () => {
       document.documentElement.classList.remove('smooth-cursor-active');
-      window.removeEventListener('mousemove', throttledMove);
+      window.removeEventListener('mousemove', handleMove);
       document.documentElement.removeEventListener('mouseleave', handleLeave);
       document.documentElement.removeEventListener('mouseenter', handleEnter);
-      cancelAnimationFrame(rafId);
       clearTimeout(settleTimeout);
     };
   }, [enabled, cursorX, cursorY, rotation, scale]);
@@ -173,10 +166,15 @@ export function SmoothCursor({
       aria-hidden="true"
       style={{
         position: 'fixed',
-        left: cursorX,
-        top: cursorY,
-        translateX: '-50%',
-        translateY: '-50%',
+        left: 0,
+        top: 0,
+        x: cursorX,
+        y: cursorY,
+        // Anchor the arrow's tip to the pointer and rotate around it.
+        translateX: `${-TIP_X * 100}%`,
+        translateY: `${-TIP_Y * 100}%`,
+        originX: TIP_X,
+        originY: TIP_Y,
         rotate: rotation,
         scale,
         zIndex: 100,
@@ -185,7 +183,7 @@ export function SmoothCursor({
       }}
       initial={false}
       animate={{ opacity: visible ? 1 : 0 }}
-      transition={{ duration: 0.15 }}
+      transition={{ duration: 0.12 }}
     >
       {cursor}
     </motion.div>

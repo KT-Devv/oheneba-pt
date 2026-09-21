@@ -12,7 +12,7 @@ interface SectionHeadingProps {
 /** Big faded index number next to a section title; the number is purely decorative. */
 export function SectionHeading({ number, title, as: Heading = 'h2', className }: SectionHeadingProps) {
   return (
-    <BlurFade className={cn('mb-16 flex items-center gap-4 md:mb-20', className)}>
+    <BlurFade blur="6px" className={cn('mb-16 flex items-center gap-4 md:mb-20', className)}>
       <span aria-hidden="true" className="text-6xl font-bold text-accent/20 md:text-7xl">
         {number}
       </span>

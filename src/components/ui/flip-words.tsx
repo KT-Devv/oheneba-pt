@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, useInView, useReducedMotion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 interface FlipWordsProps {
@@ -12,17 +12,20 @@ interface FlipWordsProps {
 export function FlipWords({ words, duration = 2800, className }: FlipWordsProps) {
   const [index, setIndex] = useState(0);
   const reduceMotion = useReducedMotion();
+  const ref = useRef<HTMLSpanElement>(null);
+  // Don't keep cycling (and re-animating letters) while scrolled out of view.
+  const inView = useInView(ref);
 
   useEffect(() => {
-    if (reduceMotion || words.length < 2) return;
+    if (reduceMotion || !inView || words.length < 2) return;
     const timer = setInterval(() => setIndex((i) => (i + 1) % words.length), duration);
     return () => clearInterval(timer);
-  }, [words.length, duration, reduceMotion]);
+  }, [words.length, duration, reduceMotion, inView]);
 
   const current = words[index];
 
   return (
-    <span className={cn('relative inline-block', className)}>
+    <span ref={ref} className={cn('relative inline-block', className)}>
       <span className="sr-only">{words.join(', ')}</span>
       <span aria-hidden="true">
         <AnimatePresence mode="popLayout" initial={false}>

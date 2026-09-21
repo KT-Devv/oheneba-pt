@@ -70,6 +70,12 @@ html.smooth-cursor-active * {
   cursor: none !important;
 }
 
+/* Animations inside an offscreen section are paused (see usePauseOffscreen) */
+[data-offscreen='true'],
+[data-offscreen='true'] * {
+  animation-play-state: paused !important;
+}
+
 /* Respect users who ask for less motion: stop decorative CSS animation */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -82,6 +88,8 @@ html.smooth-cursor-active * {
   .animate-shimmer-slide,
   .animate-spin-around,
   .animate-gradient-x,
+  .animate-border-spin,
+  .animate-float,
   .animate-bounce {
     animation: none !important;
   }

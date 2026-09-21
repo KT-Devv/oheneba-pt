@@ -13,10 +13,10 @@ interface TiltCardProps {
  * Aceternity 3D-card style tilt: the card leans toward the mouse and eases back
  * to flat when it leaves. Touch and pen input are ignored.
  */
-export function TiltCard({ children, className, maxTilt = 7 }: TiltCardProps) {
+export function TiltCard({ children, className, maxTilt = 6 }: TiltCardProps) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const springConfig = { stiffness: 220, damping: 22, mass: 0.6 };
+  const springConfig = { stiffness: 300, damping: 28, mass: 0.5 };
   const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [maxTilt, -maxTilt]), springConfig);
   const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-maxTilt, maxTilt]), springConfig);
 
@@ -37,8 +37,8 @@ export function TiltCard({ children, className, maxTilt = 7 }: TiltCardProps) {
       <motion.div
         onPointerMove={handlePointerMove}
         onPointerLeave={reset}
-        style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
-        className="h-full will-change-transform"
+        style={{ rotateX, rotateY }}
+        className="h-full"
       >
         {children}
       </motion.div>
