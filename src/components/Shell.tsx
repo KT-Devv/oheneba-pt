@@ -4,6 +4,7 @@ import { MotionConfig, motion } from 'framer-motion';
 import { Navigation, Footer } from './Layout';
 import { ScrollProgress } from '@/components/ui/scroll-progress';
 import { SmoothCursor } from '@/components/ui/smooth-cursor';
+import { applyPageMeta } from '@/lib/seo';
 
 /** React Router keeps the previous scroll position on navigation; reset it (or honour #hash links). */
 function ScrollToTop() {
@@ -33,6 +34,10 @@ const pageFallback = (
  */
 export default function Shell({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    applyPageMeta(pathname);
+  }, [pathname]);
 
   return (
     <MotionConfig reducedMotion="user">

@@ -28,6 +28,7 @@ const Services = lazy(() => import('./pages/Services').then(m => ({ default: m.S
 const Projects = lazy(() => import('./pages/Projects').then(m => ({ default: m.Projects })));
 const Education = lazy(() => import('./pages/Education').then(m => ({ default: m.Education })));
 const Contact = lazy(() => import('./pages/Contact').then(m => ({ default: m.Contact })));
+const NotFound = lazy(() => import('./pages/NotFound').then(m => ({ default: m.NotFound })));
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/education" element={<Education />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Shell>
       </Suspense>
