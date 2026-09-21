@@ -1,5 +1,6 @@
 import type { ComponentPropsWithoutRef } from 'react';
 import { cn } from '@/lib/utils';
+import { usePauseOffscreen } from '@/lib/use-pause-offscreen';
 
 interface MarqueeProps extends ComponentPropsWithoutRef<'div'> {
   reverse?: boolean;
@@ -15,12 +16,15 @@ export function Marquee({
   reverse = false,
   pauseOnHover = false,
   vertical = false,
-  repeat = 4,
+  repeat = 3,
   children,
   ...props
 }: MarqueeProps) {
+  const ref = usePauseOffscreen<HTMLDivElement>();
+
   return (
     <div
+      ref={ref}
       {...props}
       className={cn(
         'group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)]',

@@ -16,6 +16,7 @@ import { Meteors } from '@/components/ui/meteors';
 import { ShimmerButton } from '@/components/ui/shimmer-button';
 import { Spotlight } from '@/components/ui/spotlight';
 import { StatValue } from '@/components/StatValue';
+import { usePauseOffscreen } from '@/lib/use-pause-offscreen';
 
 const quickLinks = [
   { title: 'About Me', description: 'Learn my story and passion', path: '/about', number: '01' },
@@ -28,6 +29,7 @@ const focusAreas = ['Full-Stack', 'IoT', 'Robotics', 'STEM Education'];
 
 export const Home: React.FC = () => {
   const [profileImgError, setProfileImgError] = useState(false);
+  const heroRef = usePauseOffscreen<HTMLElement>();
 
   const handleSmoothScroll = () => {
     const element = document.querySelector('#stats-section');
@@ -40,15 +42,15 @@ export const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-void bg-grid text-white">
       {/* Hero — full viewport */}
-      <section className="min-h-screen flex flex-col justify-center items-center px-6 pt-20 pb-16 relative overflow-hidden">
+      <section ref={heroRef} className="min-h-screen flex flex-col justify-center items-center px-6 pt-20 pb-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-accent/5 via-transparent to-transparent pointer-events-none" />
         <Spotlight />
-        <Meteors number={12} />
+        <div className="absolute inset-x-0 bottom-0 top-20"><Meteors number={6} /></div>
         <div className="relative z-10 text-center max-w-4xl mx-auto">
-          <BlurFade inView={false} delay={0} className="mb-6">
+          <BlurFade blur="6px" inView={false} delay={0} className="mb-6">
             <p className="font-mono text-accent text-sm md:text-base tracking-widest uppercase">Hi There!</p>
           </BlurFade>
-          <BlurFade inView={false} delay={0.1} className="mb-8">
+          <BlurFade blur="6px" inView={false} delay={0.05} className="mb-8">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               <span className="text-white">Discover </span>
               <AnimatedGradientText>My Space!</AnimatedGradientText>
@@ -57,13 +59,10 @@ export const Home: React.FC = () => {
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.45, delay: 0.12 }}
             className="mb-12"
           >
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full p-[3px] bg-gradient-to-br from-accent to-accent/40 shadow-glow ring-2 ring-accent/20"
+            <div className="animate-float relative w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full p-[3px] bg-gradient-to-br from-accent to-accent/40 shadow-glow ring-2 ring-accent/20"
             >
               <div className="w-full h-full rounded-full bg-surface overflow-hidden flex items-center justify-center border-2 border-void">
                 {!profileImgError ? (
@@ -83,20 +82,20 @@ export const Home: React.FC = () => {
                   <User className="w-16 h-16 text-accent" />
                 )}
               </div>
-              <BorderBeam size={70} duration={5} borderWidth={3} colorFrom="#ffffff" colorTo="#00d4aa" />
-            </motion.div>
+              <BorderBeam arc={80} duration={5} borderWidth={3} colorFrom="#00d4aa" colorTo="#ffffff" />
+            </div>
           </motion.div>
-          <BlurFade inView={false} delay={0.4}>
+          <BlurFade blur="6px" inView={false} delay={0.18}>
             <p className="text-2xl md:text-3xl font-semibold text-white mb-2">
               Oheneba Kwaku <span className="text-accent">Tawiah Ntim</span>
             </p>
           </BlurFade>
-          <BlurFade inView={false} delay={0.5}>
+          <BlurFade blur="6px" inView={false} delay={0.22}>
             <p className="text-gray-400 font-mono text-sm md:text-base mb-12">
               KNUST · <FlipWords words={focusAreas} className="text-accent" />
             </p>
           </BlurFade>
-          <BlurFade inView={false} delay={0.6} className="flex flex-wrap justify-center items-center gap-4">
+          <BlurFade blur="6px" inView={false} delay={0.28} className="flex flex-wrap justify-center items-center gap-4">
             <ShimmerButton as={Link} to="/contact">
               <Mail className="w-5 h-5" />
               Contact me
@@ -124,7 +123,7 @@ export const Home: React.FC = () => {
               <Github className="w-5 h-5" />
             </motion.a>
           </BlurFade>
-          <BlurFade inView={false} delay={1} className="mt-20">
+          <BlurFade blur="6px" inView={false} delay={0.45} className="mt-20">
             <button
               type="button"
               onClick={handleSmoothScroll}

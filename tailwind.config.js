@@ -27,8 +27,17 @@ export default {
         'spin-around': 'spin-around calc(var(--speed, 3s) * 2) infinite linear',
         'gradient-x': 'gradient-x var(--bg-size, 8s) linear infinite',
         spotlight: 'spotlight 2s ease 0.75s 1 forwards',
+        'border-spin': 'border-spin var(--duration, 6s) linear infinite',
+        float: 'float 5s ease-in-out infinite',
       },
       keyframes: {
+        'border-spin': {
+          to: { transform: 'rotate(360deg)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-8px)' },
+        },
         marquee: {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(calc(-100% - var(--gap, 1rem)))' },

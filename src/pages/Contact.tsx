@@ -107,8 +107,7 @@ export const Contact: React.FC = () => {
                     {formStatus === 'opening' ? 'Opening email…' : 'Send Message'}
                   </button>
                 </form>
-                <BorderBeam size={120} duration={8} />
-                <BorderBeam size={120} duration={8} delay={4} colorFrom="#ffffff" colorTo="#00d4aa" />
+                <BorderBeam arc={80} duration={8} />
               </div>
             </BlurFade>
           </div>

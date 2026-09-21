@@ -9,7 +9,7 @@ interface TextGenerateEffectProps {
 }
 
 /** Aceternity TextGenerateEffect — words fade in from a blur one after another. */
-export function TextGenerateEffect({ words, className, stagger = 0.04 }: TextGenerateEffectProps) {
+export function TextGenerateEffect({ words, className, stagger = 0.02 }: TextGenerateEffectProps) {
   const list = words.split(/\s+/).filter(Boolean);
 
   return (
@@ -18,10 +18,10 @@ export function TextGenerateEffect({ words, className, stagger = 0.04 }: TextGen
         <motion.span
           key={`${word}-${i}`}
           className={cn('inline-block')}
-          initial={{ opacity: 0, filter: 'blur(8px)' }}
-          whileInView={{ opacity: 1, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, filter: 'blur(6px)' }}
+          whileInView={{ opacity: 1, filter: 'blur(0px)', transitionEnd: { filter: 'none' } }}
           viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.5, delay: i * stagger }}
+          transition={{ duration: 0.4, delay: i * stagger }}
         >
           {word}
           {i < list.length - 1 ? ' ' : ''}

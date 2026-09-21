@@ -1,64 +1,60 @@
-import { motion, type MotionStyle, type Transition } from 'framer-motion';
+import type { CSSProperties } from 'react';
 import { cn } from '@/lib/utils';
 
 interface BorderBeamProps {
-  /** Beam length in px. */
-  size?: number;
+  /** Length of the lit arc, in degrees of the lap. */
+  arc?: number;
   /** Seconds per lap. */
   duration?: number;
   /** Seconds to offset the start of the animation. */
   delay?: number;
   colorFrom?: string;
   colorTo?: string;
-  transition?: Transition;
-  className?: string;
-  style?: React.CSSProperties;
   reverse?: boolean;
-  initialOffset?: number;
   borderWidth?: number;
+  className?: string;
 }
 
-/** Magic UI BorderBeam — a light that travels around its (rounded) parent's border. */
+/**
+ * Magic UI BorderBeam — a light that travels around its (rounded) parent's
+ * border. Implemented as a rotating conic gradient masked down to a ring, so
+ * the motion is a GPU-composited `transform` rather than per-frame JS.
+ */
 export function BorderBeam({
-  className,
-  size = 50,
-  delay = 0,
+  arc = 70,
   duration = 6,
+  delay = 0,
   colorFrom = '#00d4aa',
   colorTo = '#7cf5dc',
-  transition,
-  style,
   reverse = false,
-  initialOffset = 0,
   borderWidth = 1,
+  className,
 }: BorderBeamProps) {
+  const start = 360 - arc;
+  const ringMask = 'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)';
+
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 rounded-[inherit] border-[length:var(--border-beam-width)] border-transparent [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask-image:linear-gradient(transparent,transparent),linear-gradient(#000,#000)]"
-      style={{ '--border-beam-width': `${borderWidth}px` } as React.CSSProperties}
+      className={cn('pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]', className)}
+      style={{
+        padding: borderWidth,
+        WebkitMask: ringMask,
+        WebkitMaskComposite: 'xor',
+        mask: ringMask,
+        maskComposite: 'exclude',
+      }}
     >
-      <motion.div
-        className={cn(
-          'absolute aspect-square bg-gradient-to-l from-[var(--color-from)] via-[var(--color-to)] to-transparent',
-          className,
-        )}
+      <div
+        className="animate-border-spin absolute -inset-1/2"
         style={
           {
-            width: size,
-            offsetPath: `rect(0 auto auto 0 round ${size}px)`,
-            '--color-from': colorFrom,
-            '--color-to': colorTo,
-            ...style,
-          } as MotionStyle
+            '--duration': `${duration}s`,
+            animationDelay: `-${delay}s`,
+            animationDirection: reverse ? 'reverse' : 'normal',
+            background: `conic-gradient(from 0deg, transparent 0deg, transparent ${start}deg, ${colorFrom} ${360 - arc * 0.1}deg, ${colorTo} 360deg)`,
+          } as CSSProperties
         }
-        initial={{ offsetDistance: `${initialOffset}%` }}
-        animate={{
-          offsetDistance: reverse
-            ? [`${100 - initialOffset}%`, `${-initialOffset}%`]
-            : [`${initialOffset}%`, `${100 + initialOffset}%`],
-        }}
-        transition={{ repeat: Infinity, ease: 'linear', duration, delay: -delay, ...transition }}
       />
     </div>
   );

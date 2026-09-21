@@ -18,6 +18,10 @@ void pageLoaders[window.location.pathname.replace(/\/+$/, '') || '/']?.();
 
 const Shell = lazy(loadShell);
 
+// Warm the remaining page chunks when the browser is idle, so route changes don't wait on the network.
+const idle = window.requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 1500));
+idle(() => Object.values(pageLoaders).forEach((load) => void load()));
+
 const Home = lazy(() => import('./pages/Home').then(m => ({ default: m.Home })));
 const About = lazy(() => import('./pages/About').then(m => ({ default: m.About })));
 const Services = lazy(() => import('./pages/Services').then(m => ({ default: m.Services })));

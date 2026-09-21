@@ -1,13 +1,25 @@
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
-/** Magic UI AnimatedGradientText — text whose gradient slowly slides across it. */
-export function AnimatedGradientText({ children, className }: { children: ReactNode; className?: string }) {
+interface AnimatedGradientTextProps {
+  children: ReactNode;
+  className?: string;
+  /**
+   * Slide the gradient across the text. Off by default: animating a
+   * background-clipped gradient repaints the text every frame, which is costly
+   * on large headings.
+   */
+  animate?: boolean;
+}
+
+/** Magic UI AnimatedGradientText — gradient-filled text, optionally sliding. */
+export function AnimatedGradientText({ children, className, animate = false }: AnimatedGradientTextProps) {
   return (
     <span
-      style={{ '--bg-size': '300%' } as React.CSSProperties}
+      style={{ '--bg-size': '300%' } as CSSProperties}
       className={cn(
-        'animate-gradient-x inline-block bg-gradient-to-r from-accent via-emerald-200 to-accent bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent',
+        'inline-block bg-gradient-to-r from-accent via-emerald-200 to-accent bg-clip-text text-transparent',
+        animate ? 'animate-gradient-x bg-[length:var(--bg-size)_100%]' : 'bg-[length:200%_100%] bg-left',
         className,
       )}
     >
