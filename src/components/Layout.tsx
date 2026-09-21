@@ -5,6 +5,7 @@ import Download from 'lucide-react/dist/esm/icons/download.js';
 import Menu from 'lucide-react/dist/esm/icons/menu.js';
 import X from 'lucide-react/dist/esm/icons/x.js';
 import { BlurFade } from '@/components/ui/blur-fade';
+import { LogoMark } from '@/components/Logo';
 import { cn } from '@/lib/utils';
 
 const navItems = [
@@ -55,8 +56,14 @@ export const Navigation: React.FC = () => {
         aria-label="Primary"
       >
         <div className={cn('max-w-6xl mx-auto px-6 flex justify-between items-center transition-[padding] duration-300', scrolled ? 'py-3' : 'py-4')}>
-          <Link to="/" className="text-xl font-semibold font-mono text-accent tracking-tight hover:text-accent/80 transition-colors">
-            K.T Devv
+          {/* The mark spells "K.T"; the text completes the name. */}
+          <Link
+            to="/"
+            aria-label="K.T Devv — Home"
+            className="group flex items-center gap-2.5 text-xl font-semibold font-mono text-accent tracking-tight hover:text-accent/80 transition-colors"
+          >
+            <LogoMark className="h-9 w-9 transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3" />
+            <span aria-hidden="true">Devv</span>
           </Link>
           <div className="hidden md:flex items-center gap-1 font-mono text-sm">
             {navItems.map((item) => (
