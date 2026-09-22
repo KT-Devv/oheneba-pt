@@ -54,20 +54,37 @@ const REDUCED_MOTION = '(prefers-reduced-motion: reduce)';
 /**
  * Only enable the custom cursor for mouse-like pointers. Touch devices and
  * users who prefer reduced motion keep the native cursor.
+ *
+ * `matchMedia('(pointer: fine)')` is only a best guess for the very first
+ * paint — some touch-capable Windows laptops report a coarse primary pointer
+ * even while being driven by a mouse. Once a real pointer event arrives we
+ * trust its `pointerType` instead, which is what the OS actually saw.
  */
 function useCursorEnabled() {
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia(FINE_POINTER).matches && !window.matchMedia(REDUCED_MOTION).matches,
+  );
 
   useEffect(() => {
-    const fine = window.matchMedia(FINE_POINTER);
     const reduced = window.matchMedia(REDUCED_MOTION);
-    const update = () => setEnabled(fine.matches && !reduced.matches);
-    update();
-    fine.addEventListener('change', update);
-    reduced.addEventListener('change', update);
+
+    const handlePointer = (e: PointerEvent) => {
+      if (reduced.matches) return;
+      if (e.pointerType === 'mouse') setEnabled(true);
+      else if (e.pointerType === 'touch') setEnabled(false);
+      // 'pen' input is ambiguous — leave whatever was last decided.
+    };
+    const handleReducedChange = () => {
+      if (reduced.matches) setEnabled(false);
+    };
+
+    window.addEventListener('pointerdown', handlePointer, { passive: true });
+    window.addEventListener('pointermove', handlePointer, { passive: true });
+    reduced.addEventListener('change', handleReducedChange);
     return () => {
-      fine.removeEventListener('change', update);
-      reduced.removeEventListener('change', update);
+      window.removeEventListener('pointerdown', handlePointer);
+      window.removeEventListener('pointermove', handlePointer);
+      reduced.removeEventListener('change', handleReducedChange);
     };
   }, []);
 
