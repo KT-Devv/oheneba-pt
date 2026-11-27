@@ -1,6 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { services, skills, technologies } from '../data/portfolio';
+import { services, skillGroups, technologies } from '../data/portfolio';
 import { BlurFade } from '@/components/ui/blur-fade';
 import { MagicCard } from '@/components/ui/magic-card';
 import { Marquee } from '@/components/ui/marquee';
@@ -41,33 +40,28 @@ export const Services: React.FC = () => {
       <section className="py-24 md:py-32 px-6 border-t border-border bg-surface/20">
         <div className="max-w-6xl mx-auto">
           <SectionHeading number="03" title="Skill Set" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-            {skills.map((skill, index) => {
-              const IconComponent = skill.icon;
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+            {skillGroups.map((group, index) => {
+              const IconComponent = group.icon;
               return (
-                <BlurFade key={skill.name} delay={index * 0.05} className="h-full">
-                  <MagicCard className="h-full" contentClassName="p-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <IconComponent className="w-6 h-6 text-accent" />
-                      <h3 className="text-base font-semibold text-white">{skill.name}</h3>
+                <BlurFade key={group.title} delay={index * 0.08} className="h-full">
+                  <MagicCard className="h-full" contentClassName="p-8">
+                    <div className="flex items-center gap-3 mb-6">
+                      <span className="rounded-xl border border-accent/20 bg-accent/10 p-2.5">
+                        <IconComponent className="w-6 h-6 text-accent" />
+                      </span>
+                      <h3 className="text-lg font-semibold text-white">{group.title}</h3>
                     </div>
-                    <div
-                      className="w-full bg-void rounded-full h-2 mb-2 overflow-hidden"
-                      role="progressbar"
-                      aria-label={`${skill.name} proficiency`}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                      aria-valuenow={skill.level}
-                    >
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1, delay: 0.2 + index * 0.05, ease: 'easeOut' }}
-                        viewport={{ once: true }}
-                        className="h-2 rounded-full bg-gradient-to-r from-accent/60 to-accent shadow-[0_0_10px_rgba(0,212,170,0.6)]"
-                      />
-                    </div>
-                    <span className="text-sm font-mono text-gray-500">{skill.level}%</span>
+                    <ul className="flex flex-wrap gap-2">
+                      {group.skills.map((skill) => (
+                        <li
+                          key={skill}
+                          className="bg-void/60 border border-border px-3 py-1.5 rounded-lg text-sm font-mono text-gray-400"
+                        >
+                          {skill}
+                        </li>
+                      ))}
+                    </ul>
                   </MagicCard>
                 </BlurFade>
               );

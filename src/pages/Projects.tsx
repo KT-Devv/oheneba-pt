@@ -1,4 +1,5 @@
 import React from 'react';
+import Cpu from 'lucide-react/dist/esm/icons/cpu.js';
 import { projects } from '../data/portfolio';
 import { BlurFade } from '@/components/ui/blur-fade';
 import { MagicCard } from '@/components/ui/magic-card';
@@ -16,7 +17,11 @@ export const Projects: React.FC = () => {
               const card = (
                 <>
                   <div className="relative h-52 overflow-hidden">
-                    {project.image && project.image.startsWith('/images/') ? (
+                    {!project.image ? (
+                      <div className="w-full h-full bg-gradient-to-br from-accent/20 via-surface to-void flex items-center justify-center">
+                        <Cpu className="w-14 h-14 text-accent/70" aria-hidden="true" />
+                      </div>
+                    ) : project.image.startsWith('/images/') ? (
                       <picture>
                         <source srcSet={project.image.replace('.jpg', '.avif')} type="image/avif" />
                         <source srcSet={project.image.replace('.jpg', '-800.webp')} type="image/webp" />
@@ -40,6 +45,9 @@ export const Projects: React.FC = () => {
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-accent transition-colors">{project.title}</h3>
                     <p className="text-gray-500 mb-5 text-base leading-relaxed">{project.description}</p>
+                    {'url' in project && project.url && (
+                      <p className="mb-4 text-sm font-mono text-accent">View on GitHub →</p>
+                    )}
                     <div className="flex flex-wrap gap-2">
                       {project.tech.map((tech) => (
                         <span

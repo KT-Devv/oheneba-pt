@@ -16,7 +16,7 @@ export const pageMeta: Record<string, PageMeta> = {
   '/about': {
     title: 'About — K.T Devv',
     description:
-      'Computer Science student at KNUST, robotics competitor (RiSE 2021 winner, WRO 2022 and 2025) and STEM mentor. Learn my story.',
+      'Computer Science graduate (KNUST) and national service personnel at CSIR-INSTI working on research and robotics projects. RiSE 2021 winner, WRO 2022 and 2025 competitor, STEM mentor.',
   },
   '/services': {
     title: 'Services & Skills — K.T Devv',
@@ -29,9 +29,9 @@ export const pageMeta: Record<string, PageMeta> = {
       'Featured work: mobile and web apps, an AI banking site, a construction management system, and LEGO Mindstorms robotics for WRO 2025.',
   },
   '/education': {
-    title: 'Education — K.T Devv',
+    title: 'Education & Experience — K.T Devv',
     description:
-      'BSc Computer Science at Kwame Nkrumah University of Science and Technology (KNUST), and General Science at Our Lady of Grace SHS.',
+      'National service at CSIR-INSTI (research and robotics), BSc Computer Science from KNUST, and General Science at Our Lady of Grace SHS.',
   },
   '/contact': {
     title: 'Contact — K.T Devv',

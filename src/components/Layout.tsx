@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import Github from 'lucide-react/dist/esm/icons/github.js';
+import Linkedin from 'lucide-react/dist/esm/icons/linkedin.js';
 import Download from 'lucide-react/dist/esm/icons/download.js';
 import Menu from 'lucide-react/dist/esm/icons/menu.js';
 import X from 'lucide-react/dist/esm/icons/x.js';
 import { BlurFade } from '@/components/ui/blur-fade';
 import { LogoMark } from '@/components/Logo';
 import { cn } from '@/lib/utils';
+import { contact } from '../data/portfolio';
+
+const GITHUB_URL = 'https://github.com/KT-Devv';
 
 const navItems = [
   { label: 'Home', path: '/' },
@@ -93,15 +98,26 @@ export const Navigation: React.FC = () => {
               </NavLink>
             ))}
           </div>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:flex items-center gap-2 font-mono text-sm text-accent hover:underline"
-          >
-            <Download className="w-4 h-4" />
-            View Resume
-          </a>
+          <div className="hidden md:flex items-center gap-5">
+            <a
+              href={GITHUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub profile"
+              className="text-gray-400 hover:text-accent transition-colors"
+            >
+              <Github className="w-5 h-5" />
+            </a>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 font-mono text-sm text-accent hover:underline"
+            >
+              <Download className="w-4 h-4" />
+              View Resume
+            </a>
+          </div>
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-gray-400 hover:text-accent focus:outline-none"
@@ -165,6 +181,26 @@ export const Footer: React.FC = () => {
   return (
     <footer className="py-10 px-6 border-t border-border">
       <BlurFade className="max-w-6xl mx-auto text-center">
+        <div className="mb-4 flex justify-center gap-6">
+          <a
+            href={GITHUB_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub profile"
+            className="text-gray-400 hover:text-accent transition-colors"
+          >
+            <Github className="w-5 h-5" />
+          </a>
+          <a
+            href={contact.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn profile"
+            className="text-gray-400 hover:text-accent transition-colors"
+          >
+            <Linkedin className="w-5 h-5" />
+          </a>
+        </div>
         <p className="text-gray-300 font-mono text-sm">
           © {new Date().getFullYear()} Oheneba Kwaku Tawiah Ntim
         </p>
