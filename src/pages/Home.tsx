@@ -70,9 +70,9 @@ export const Home: React.FC = () => {
                     <source srcSet="/images/profile.avif" type="image/avif" />
                     <source srcSet="/images/profile-800.webp" type="image/webp" />
                     <img
-                      src="/profile.JPG"
+                      src="/images/profile.jpg"
                       alt="Oheneba Ntim"
-                      className="w-full h-full object-cover object-[42%_35%]"
+                      className="w-full h-full object-cover object-[50%_45%]"
                       onError={() => setProfileImgError(true)}
                       // React 18 only forwards the lowercase attribute (and its types don't know it yet)
                       {...{ fetchpriority: 'high' }}
