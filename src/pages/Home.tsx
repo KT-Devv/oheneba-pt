@@ -96,12 +96,8 @@ export const Home: React.FC = () => {
             </p>
           </BlurFade>
           <BlurFade blur="6px" inView={false} delay={0.25} className="mb-12">
-            <p className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5 font-mono text-xs md:text-sm text-gray-300">
-              <span className="relative flex h-2 w-2" aria-hidden="true">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-              </span>
-              Currently: National Service at <span className="text-accent">CSIR-INSTI</span> · research &amp; robotics
+            <p className="text-gray-400 text-sm md:text-base">
+              Doing my national service at <span className="text-white">CSIR-INSTI</span>, working on research and robotics projects.
             </p>
           </BlurFade>
           <BlurFade blur="6px" inView={false} delay={0.28} className="flex flex-wrap justify-center items-center gap-4">
