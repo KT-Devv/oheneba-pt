@@ -139,7 +139,7 @@ export const experience = [
   {
     role: 'National Service Personnel',
     organization: 'CSIR-INSTI',
-    year: '2026 - Present',
+    year: 'Nov 2026 - Present',
     status: 'Current',
     description: 'Contributing to research projects and robotics projects.',
   },
