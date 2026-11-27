@@ -4,7 +4,7 @@ const sharp = require('sharp');
 
 const images = [
   {
-    src: path.join(__dirname, '..', 'public', 'profile.JPG'),
+    src: path.join(__dirname, '..', 'public', 'profile-illustration.png'),
     name: 'profile',
   },
   {
