@@ -8,7 +8,8 @@ import { StatValue } from '@/components/StatValue';
 
 const story =
   'Passionate about full-stack development, IoT systems, robotics, and network technologies. ' +
-  'BSc Computer Science with hands-on experience in web development, Arduino, LEGO robotics, ' +
+  'Computer Science graduate and national service personnel at CSIR-INSTI, working on research ' +
+  'and robotics projects. Hands-on experience in web development, Arduino, LEGO robotics, ' +
   'and modern software engineering. I aim to make a positive impact through technology and ' +
   'inspire others in STEM.';
 
@@ -54,9 +55,9 @@ export const About: React.FC = () => {
           </BlurFade>
           <div className="space-y-8 text-gray-400 text-lg leading-relaxed">
             <BlurFade as="p">
-              I'm a final-year Computer Science student at Kwame Nkrumah University of Science and Technology (KNUST)
-              with a passion for building innovative solutions through technology. My journey spans full-stack web development,
-              mobile app creation, robotics, networking, and IoT systems.
+              I'm a Computer Science graduate of Kwame Nkrumah University of Science and Technology (KNUST) and I'm
+              currently serving as a national service personnel at CSIR-INSTI, where I work on research projects and robotics
+              projects. My journey spans full-stack web development, mobile app creation, robotics, networking, and IoT systems.
             </BlurFade>
             <BlurFade as="p" delay={0.1}>
               Over the years, I've worked on diverse projects ranging from music discovery applications to educational robotics

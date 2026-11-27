@@ -22,10 +22,10 @@ const quickLinks = [
   { title: 'About Me', description: 'Learn my story and passion', path: '/about', number: '01' },
   { title: 'Services', description: 'What I can offer you', path: '/services', number: '02' },
   { title: 'Projects', description: 'Featured work & portfolio', path: '/projects', number: '03' },
-  { title: 'Education', description: 'Academic background & interests', path: '/education', number: '04' },
+  { title: 'Education', description: 'Education, experience & interests', path: '/education', number: '04' },
 ];
 
-const focusAreas = ['Full-Stack', 'IoT', 'Robotics', 'STEM Education'];
+const focusAreas = ['Research', 'Robotics', 'IoT', 'Full-Stack', 'STEM Education'];
 
 export const Home: React.FC = () => {
   const [profileImgError, setProfileImgError] = useState(false);
@@ -48,12 +48,12 @@ export const Home: React.FC = () => {
         <div className="absolute inset-x-0 bottom-0 top-20"><Meteors number={6} /></div>
         <div className="relative z-10 text-center max-w-4xl mx-auto">
           <BlurFade blur="6px" inView={false} delay={0} className="mb-6">
-            <p className="font-mono text-accent text-sm md:text-base tracking-widest uppercase">Hi There!</p>
+            <p className="font-mono text-accent text-sm md:text-base tracking-widest uppercase">Hi, I'm Oheneba</p>
           </BlurFade>
           <BlurFade blur="6px" inView={false} delay={0.05} className="mb-8">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-              <span className="text-white">Discover </span>
-              <AnimatedGradientText>My Space!</AnimatedGradientText>
+              <span className="text-white">Building </span>
+              <AnimatedGradientText>Software &amp; Robots</AnimatedGradientText>
             </h1>
           </BlurFade>
           <motion.div
@@ -91,8 +91,17 @@ export const Home: React.FC = () => {
             </p>
           </BlurFade>
           <BlurFade blur="6px" inView={false} delay={0.22}>
-            <p className="text-gray-400 font-mono text-sm md:text-base mb-12">
-              KNUST · <FlipWords words={focusAreas} className="text-accent" />
+            <p className="text-gray-400 font-mono text-sm md:text-base mb-4">
+              Computer Scientist · <FlipWords words={focusAreas} className="text-accent" />
+            </p>
+          </BlurFade>
+          <BlurFade blur="6px" inView={false} delay={0.25} className="mb-12">
+            <p className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5 font-mono text-xs md:text-sm text-gray-300">
+              <span className="relative flex h-2 w-2" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              </span>
+              Currently: National Service at <span className="text-accent">CSIR-INSTI</span> · research &amp; robotics
             </p>
           </BlurFade>
           <BlurFade blur="6px" inView={false} delay={0.28} className="flex flex-wrap justify-center items-center gap-4">

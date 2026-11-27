@@ -11,6 +11,30 @@ const images = [
     src: path.join(__dirname, '..', 'src', 'Images', 'Robot.jpg'),
     name: 'robot',
   },
+  {
+    src: path.join(__dirname, '..', 'src', 'Images', 'projects', 'melora.jpg'),
+    name: 'melora',
+  },
+  {
+    src: path.join(__dirname, '..', 'src', 'Images', 'projects', 'career-atlas.jpg'),
+    name: 'career-atlas',
+  },
+  {
+    src: path.join(__dirname, '..', 'src', 'Images', 'projects', 'echo-bank.jpg'),
+    name: 'echo-bank',
+  },
+  {
+    src: path.join(__dirname, '..', 'src', 'Images', 'projects', 'sitetrack.jpg'),
+    name: 'sitetrack',
+  },
+  {
+    src: path.join(__dirname, '..', 'src', 'Images', 'projects', 'snake.jpg'),
+    name: 'snake',
+  },
+  {
+    src: path.join(__dirname, '..', 'src', 'Images', 'projects', 'csir-insti.jpg'),
+    name: 'csir-insti',
+  },
 ];
 
 const outDir = path.join(__dirname, '..', 'public', 'images');
