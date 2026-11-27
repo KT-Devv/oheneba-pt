@@ -35,6 +35,10 @@ const images = [
     src: path.join(__dirname, '..', 'src', 'Images', 'projects', 'csir-insti.jpg'),
     name: 'csir-insti',
   },
+  {
+    src: path.join(__dirname, '..', 'src', 'Images', 'projects', 'wro-2025.jpg'),
+    name: 'wro-2025',
+  },
 ];
 
 const outDir = path.join(__dirname, '..', 'public', 'images');

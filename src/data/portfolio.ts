@@ -100,6 +100,7 @@ export const projects = [
     title: 'LEGO Mindstorms EV3 — WRO 2025',
     description: 'Programmed LEGO Mindstorms EV3 robot for WRO 2025 RoboMission Junior at CSIR: sensor integration, pathfinding algorithms, and geometry-based navigation. Delivered competition-ready robot with 95% task success rate.',
     tech: ['LEGO Mindstorms', 'EV3', 'Robotics', 'Sensors', 'Algorithms'],
+    image: '/images/wro-2025.jpg',
   },
   {
     title: 'RiSE Robotics Competition 2021',
